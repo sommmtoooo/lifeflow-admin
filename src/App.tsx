@@ -9,6 +9,7 @@ import Dashboard from "./screens/Dashboard";
 import RequestScreen from "./screens/requests/RequestScreen";
 import NewRequestScreen from "./screens/requests/NewRequestScreen";
 import UpdateRequestScreen from "./screens/requests/UpdateRequestScreen";
+import NotFound from "./screens/NotFound";
 
 export default function App() {
   initializeApp(firebaseConfig);
@@ -28,6 +29,7 @@ export default function App() {
             element={<UpdateRequestScreen />}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
