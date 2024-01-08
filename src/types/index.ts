@@ -13,7 +13,7 @@ export type Request = {
   id: string;
   centerName: string;
   centerLocation: string;
-  bloodPacks: number;
+  packs: number;
   dueDate: Date;
   urgent: boolean;
   status: "FULFILLED" | "PENDING" | "CLOSED";

@@ -12,6 +12,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./screens/Dashboard";
 import RequestScreen from "./screens/requests/RequestScreen";
 import EditRequestScreen from "./screens/requests/EditRequestScreen";
+import NewRequestScreen from "./screens/requests/NewRequestScreen";
 
 export default function App() {
   initializeApp(firebaseConfig);
@@ -23,11 +24,11 @@ export default function App() {
           <Route index element={<Dashboard />} />
           <Route path="/admin/dashboard/request" element={<RequestScreen />} />
           <Route
-            path="/admin/dashboard/request/edit"
-            element={<EditRequestScreen />}
+            path="/admin/dashboard/request/new"
+            element={<NewRequestScreen />}
           />
           <Route
-            path="/admin/dashboard/request/new"
+            path="/admin/dashboard/request/edit"
             element={<EditRequestScreen />}
           />
         </Route>

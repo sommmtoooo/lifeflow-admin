@@ -1,8 +1,13 @@
 import Input from "../components/elements/Input";
 import Icon from "../assets/icon.png";
 import { FormEvent, useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 export default function LoginScreen() {
   type LoginData = {
@@ -28,18 +33,18 @@ export default function LoginScreen() {
   };
 
   const login = () => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log(user);
-        setLoading(false);
-        setTimeout(() => navigate("/admin/dashboard"), 500);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    console.log(data);
+    setPersistence(auth, browserSessionPersistence).then(() => {
+      signInWithEmailAndPassword(auth, data.email, data.password)
+        .then((userCredentials) => {
+          const user = userCredentials.user;
+          console.log(user);
+          setLoading(false);
+          setTimeout(() => navigate("/admin/dashboard"), 500);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
   };
 
   return (
