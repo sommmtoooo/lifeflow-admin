@@ -13,7 +13,7 @@ export default function RequestScreen() {
       setRequests(docs);
       setLoading(false);
     });
-  }, []);
+  }, [requests]);
   return (
     <section>
       <div className="flex flex-col">

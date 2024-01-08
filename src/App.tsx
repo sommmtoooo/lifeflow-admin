@@ -1,18 +1,14 @@
-import {
-  BrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from "react-router-dom";
-import LoginScreen from "./screens/LoginScreen";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase";
+
 import DashboardLayout from "./layouts/DashboardLayout";
+
+import LoginScreen from "./screens/LoginScreen";
 import Dashboard from "./screens/Dashboard";
 import RequestScreen from "./screens/requests/RequestScreen";
-import EditRequestScreen from "./screens/requests/EditRequestScreen";
 import NewRequestScreen from "./screens/requests/NewRequestScreen";
+import UpdateRequestScreen from "./screens/requests/UpdateRequestScreen";
 
 export default function App() {
   initializeApp(firebaseConfig);
@@ -28,8 +24,8 @@ export default function App() {
             element={<NewRequestScreen />}
           />
           <Route
-            path="/admin/dashboard/request/edit"
-            element={<EditRequestScreen />}
+            path="/admin/dashboard/request/edit/:id"
+            element={<UpdateRequestScreen />}
           />
         </Route>
       </Routes>

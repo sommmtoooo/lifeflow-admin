@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import SideNav from "../components/SideNavbar";
 import { useEffect } from "react";
 import { auth } from "../firebase";
+import { Toaster } from "react-hot-toast";
 
 export default function DashboardLayout() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function DashboardLayout() {
           <Outlet />
         </div>
       </section>
+      <Toaster />
     </main>
   );
 }

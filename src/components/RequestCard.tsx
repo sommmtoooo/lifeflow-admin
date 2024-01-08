@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Request } from "../types";
 import RequestCardItem from "./RequestCardItem";
 import Button from "./elements/Button";
+import { deleteRequest } from "../firebase/request.firebase";
+import { notify } from "../utils";
 
 interface RequestCardProps {
   request?: Request;
@@ -10,8 +12,13 @@ interface RequestCardProps {
 export default function RequestCard({ request }: RequestCardProps) {
   const { id, centerName, centerLocation, status, urgent, packs, dueDate } =
     request as Request;
-  const deleteRequest = () => {
-    alert("Deleting Request");
+
+  const handleDelete = () => {
+    deleteRequest(id).then((res) => {
+      if (res) {
+        notify("Deleted");
+      }
+    });
   };
 
   useEffect(() => {
@@ -26,14 +33,14 @@ export default function RequestCard({ request }: RequestCardProps) {
       <RequestCardItem name={"Urgent"} value={urgent ? "Emergency" : "Mild"} />
       <RequestCardItem name={"Due Date"} value={dueDate.toString()} />
       <RequestCardItem name={"Status"} value={status} />
-      <div className="flex gap-2 my-2 self-end">
+      <div className="flex gap-2 my-2 justify-self-end self-end">
         <a href={`/admin/dashboard/request/edit/${id}`}>
           <Button name="Edit" className="bg-black text-white" />
         </a>
         <Button
           name="Delete"
           className="border-[2px] border-white"
-          onClick={deleteRequest}
+          onClick={handleDelete}
         />{" "}
       </div>
     </div>

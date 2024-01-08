@@ -1,13 +1,22 @@
 import { ChangeEventHandler, FormEvent, useState } from "react";
 import ViewBar from "../../components/ViewBar";
 import Input from "../../components/elements/Input";
+import { createRequest } from "../../firebase/request.firebase";
+import { Request } from "../../types";
+import { notify } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
 export default function NewRequestScreen() {
   const [data, setData] = useState({});
+  const navigate = useNavigate();
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log(data);
+
+    createRequest(data as Request).then(() => {
+      notify("Blood Request Created");
+      navigate("/admin/dashboard/request");
+    });
   };
 
   const onChange = (event: ChangeEventHandler<HTMLInputElement>) => {
@@ -16,6 +25,7 @@ export default function NewRequestScreen() {
       [event.target.name]: event.target.value,
     }));
   };
+
   return (
     <section>
       <ViewBar
@@ -44,7 +54,7 @@ export default function NewRequestScreen() {
           required
           placeholder="Packs"
           onChange={onChange}
-          min={3}
+          min={1}
         />
         <select
           name="urgent"
@@ -53,7 +63,7 @@ export default function NewRequestScreen() {
           required
         >
           <option value="" selected disabled hidden>
-            Urgency
+            Select Urgency
           </option>
           <option value="MILD">MILD</option>
           <option value="EMERGENCY">EMERGENCY</option>
@@ -65,7 +75,7 @@ export default function NewRequestScreen() {
           required
         >
           <option value="" selected disabled hidden>
-            Choose Status{" "}
+            Select Status{" "}
           </option>
           <option value="PENDING">PENDING</option>
           <option value="FULFILLED">FULFILLED</option>
@@ -73,7 +83,7 @@ export default function NewRequestScreen() {
 
         <Input type="date" name="dueDate" onChange={onChange} required />
         <button className="bg-primary px-1 py-2 rounded-md text-center text-white font-bold hover:bg-dark">
-          Create Blood Request
+          Create Request
         </button>
       </form>
     </section>

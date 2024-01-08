@@ -1,6 +1,6 @@
 interface ViewBarProps {
   name: string;
-  description: string;
+  description?: string;
   link?: string;
 }
 export default function ViewBar({ name, description, link }: ViewBarProps) {
