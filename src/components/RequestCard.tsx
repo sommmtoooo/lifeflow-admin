@@ -10,8 +10,16 @@ interface RequestCardProps {
 }
 
 export default function RequestCard({ request }: RequestCardProps) {
-  const { id, centerName, centerLocation, status, urgent, packs, dueDate } =
-    request as Request;
+  const {
+    id,
+    centerName,
+    centerLocation,
+    bloodGroup = "---",
+    status,
+    urgent,
+    packs,
+    dueDate,
+  } = request as Request;
 
   const handleDelete = () => {
     deleteRequest(id).then((res) => {
@@ -29,6 +37,7 @@ export default function RequestCard({ request }: RequestCardProps) {
       <h3 className="text-xl font-bold">{centerName}</h3>
 
       <RequestCardItem name={"Location"} value={centerLocation.toString()} />
+      <RequestCardItem name={"Blood Group"} value={bloodGroup.toString()} />
       <RequestCardItem name={"Packs"} value={packs} />
       <RequestCardItem name={"Urgent"} value={urgent ? "Emergency" : "Mild"} />
       <RequestCardItem name={"Due Date"} value={dueDate.toString()} />

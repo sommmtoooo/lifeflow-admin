@@ -13,6 +13,7 @@ export type Request = {
   id: string;
   centerName: string;
   centerLocation: string;
+  bloodGroup: string;
   packs: number;
   dueDate: Date;
   urgent: boolean;

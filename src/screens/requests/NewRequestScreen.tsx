@@ -48,6 +48,25 @@ export default function NewRequestScreen() {
           required
           onChange={onChange}
         />
+        <select
+          name="bloodGroup"
+          className={inputStyle}
+          onChange={onChange}
+          required
+        >
+          <option value="" selected disabled hidden>
+            Choose Blood Group
+          </option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
         <Input
           type="number"
           name="packs"
