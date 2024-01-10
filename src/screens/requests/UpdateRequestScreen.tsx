@@ -15,6 +15,7 @@ export default function UpdateRequestScreen() {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
+    notify("Updating");
     updateRequest(id + "", data as Request).then((res) => {
       if (res) {
         notify("Request Updated");

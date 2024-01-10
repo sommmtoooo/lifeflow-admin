@@ -5,8 +5,8 @@ import { getDonors } from "../firebase/user.firebase";
 import { getRequests } from "../firebase/request.firebase";
 
 export default function Dashboard() {
-  const [donors, setDonors] = useState(0);
-  const [bloodRequests, setBloodRequests] = useState(0);
+  const [donors, setDonors] = useState<number | "---">("---");
+  const [bloodRequests, setBloodRequests] = useState<number | "---">("---");
   useEffect(() => {
     getRequests().then((requests) => {
       setBloodRequests(requests.length);
@@ -21,9 +21,9 @@ export default function Dashboard() {
       <ViewBar name="Dashboard" description="Lifeflow overview" />
       <DashboardCard title="Blood Requests" count={bloodRequests} />
       <DashboardCard title="Donors" count={donors} />
-      <DashboardCard title="Donations" count={300} />
-      <DashboardCard title="Pending Donations" count={300} />
-      <DashboardCard title="Issues" count={300} />
+      <DashboardCard title="Donations" />
+      <DashboardCard title="Pending Donations" />
+      <DashboardCard title="Issues" />
     </section>
   );
 }

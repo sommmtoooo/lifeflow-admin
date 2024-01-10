@@ -1,8 +1,11 @@
 interface DashboardCardProps {
   title: string;
-  count: number;
+  count?: number | "---";
 }
-export default function DashboardCard({ title, count }: DashboardCardProps) {
+export default function DashboardCard({
+  title,
+  count = "---",
+}: DashboardCardProps) {
   return (
     <div
       className={`bg-neutral-700 mb-5 flex flex-col text-white rounded-md px-3 py-5`}

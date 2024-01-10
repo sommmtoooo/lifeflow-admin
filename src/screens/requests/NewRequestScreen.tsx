@@ -12,7 +12,7 @@ export default function NewRequestScreen() {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-
+    notify("Creating Request");
     createRequest(data as Request).then(() => {
       notify("Blood Request Created");
       navigate("/admin/dashboard/request");
