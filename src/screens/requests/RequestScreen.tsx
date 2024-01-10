@@ -13,7 +13,8 @@ export default function RequestScreen() {
       setRequests(docs);
       setLoading(false);
     });
-  }, [requests]);
+  }, []);
+
   return (
     <section>
       <div className="flex flex-col">
@@ -29,7 +30,7 @@ export default function RequestScreen() {
       ) : (
         <section className="grid grid-cols-3 gap-3">
           {requests.map((request) => (
-            <RequestCard request={request} />
+            <RequestCard setRequests={setRequests} request={request} />
           ))}
         </section>
       )}

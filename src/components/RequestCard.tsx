@@ -2,14 +2,18 @@ import { useEffect } from "react";
 import { Request } from "../types";
 import RequestCardItem from "./RequestCardItem";
 import Button from "./elements/Button";
-import { deleteRequest } from "../firebase/request.firebase";
+import { deleteRequest, getRequests } from "../firebase/request.firebase";
 import { notify } from "../utils";
 
 interface RequestCardProps {
   request?: Request;
+  setRequests: React.Dispatch<React.SetStateAction<Array<Request>>>;
 }
 
-export default function RequestCard({ request }: RequestCardProps) {
+export default function RequestCard({
+  request,
+  setRequests,
+}: RequestCardProps) {
   const {
     id,
     centerName,
@@ -24,6 +28,9 @@ export default function RequestCard({ request }: RequestCardProps) {
   const handleDelete = () => {
     deleteRequest(id).then((res) => {
       if (res) {
+        getRequests().then((docs) => {
+          setRequests(docs);
+        });
         notify("Deleted");
       }
     });
