@@ -5,13 +5,13 @@ import { getAuth } from "firebase/auth";
 import { getMessaging } from "firebase/messaging";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBrdep7uEhcBb5g6ozPRYhgKuf1fpFDBTg",
-  authDomain: "lifeflow-898f6.firebaseapp.com",
-  projectId: "lifeflow-898f6",
-  storageBucket: "lifeflow-898f6.appspot.com",
-  messagingSenderId: "28560610733",
-  appId: "1:28560610733:web:e4c29173f235328c043d24",
-  measurementId: "G-T7E0P2ZRD6",
+  apiKey: import.meta.env.VITE_FB_API_KEY,
+  authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FB_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FB_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_FB_MSG_SENDERID,
+  appId: import.meta.env.VITE_FB_APPID,
+  measurementId: import.meta.env.VITE_FB_MSID,
 };
 
 const app = initializeApp(firebaseConfig);
