@@ -4,7 +4,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  query,
 } from "firebase/firestore";
 import { database } from ".";
 import { getAuth } from "firebase/auth";

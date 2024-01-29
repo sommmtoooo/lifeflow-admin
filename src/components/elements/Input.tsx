@@ -30,7 +30,7 @@ export default function Input({
     <input
       name={name}
       type={type}
-      autocomplete={autocomplete}
+      autoComplete={autocomplete}
       placeholder={placeholder}
       min={min}
       max={max}
